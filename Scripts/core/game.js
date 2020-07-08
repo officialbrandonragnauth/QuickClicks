@@ -7,8 +7,11 @@
     var currentScene;
     var currentState;
     assetManifest = [
+        { id: "background", src: "./Assets/background.png" },
+        { id: "help", src: "./Assets/help.png" },
         { id: "logo", src: "./Assets/logo.png" },
-        { id: "target", src: "./Assets/target.png" }
+        { id: "start", src: "./Assets/start.png" },
+        { id: "target_1", src: "./Assets/target_1.png" }
     ];
     function Init() {
         assetManager = new createjs.LoadQueue();
@@ -42,17 +45,17 @@
                 break;
             case config.Scene.GAME:
                 stage.removeAllChildren();
-                currentScene = new scenes.StartScene(assetManager);
+                currentScene = new scenes.PlayScene(assetManager);
                 stage.addChild(currentScene);
                 break;
             case config.Scene.OVER:
                 stage.removeAllChildren();
-                currentScene = new scenes.StartScene(assetManager);
+                currentScene = new scenes.GameOverScene(assetManager);
                 stage.addChild(currentScene);
                 break;
         }
         currentState = objects.Game.currentScene;
     }
     window.onload = Init;
-});
+})();
 //# sourceMappingURL=game.js.map

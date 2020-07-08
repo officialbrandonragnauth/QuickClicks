@@ -13,36 +13,36 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var scenes;
 (function (scenes) {
-    var StartScene = /** @class */ (function (_super) {
-        __extends(StartScene, _super);
+    var PlayScene = /** @class */ (function (_super) {
+        __extends(PlayScene, _super);
         // Constructor
-        function StartScene(assetManager) {
+        function PlayScene(assetManager) {
             var _this = _super.call(this, assetManager) || this;
             _this.Start();
             return _this;
         }
         // Methods
-        StartScene.prototype.Start = function () {
-            this.logo = new objects.Logo(this.assetManager, 180, 75);
+        PlayScene.prototype.Start = function () {
             this.background = new objects.Background(this.assetManager);
-            this.startButton = new objects.Button(this.assetManager, "start", false, 342, 300);
-            this.helpButton = new objects.Button(this.assetManager, "help", true, 342, 378);
+            this.targetX = Math.floor(Math.random() * 800);
+            this.targetY = Math.floor(Math.random() * 420);
+            this.target = new objects.Target(this.assetManager, 1, this.targetX, this.targetY);
+            createjs.Ticker.reset();
+            createjs.Ticker.on("tick", this.Update);
+            this.timerLabel = new objects.Label("", "14px", "Arial", "#000");
+            this.timerLabel.text = "" + createjs.Ticker.getTime(true);
             this.Main();
         };
-        StartScene.prototype.Update = function () { };
-        StartScene.prototype.Main = function () {
+        PlayScene.prototype.Main = function () {
             this.addChild(this.background);
-            this.addChild(this.logo);
-            this.addChild(this.startButton);
-            this.addChild(this.helpButton);
-            this.startButton.on("click", this.startButtonClick);
+            this.addChild(this.target);
+            this.addChild(this.timerLabel);
         };
-        StartScene.prototype.startButtonClick = function () {
-            // Change from START to GAME scene
-            objects.Game.currentScene = config.Scene.GAME;
+        PlayScene.prototype.Update = function () {
+            this.num = createjs.Ticker.getTime(true);
         };
-        return StartScene;
+        return PlayScene;
     }(objects.Scene));
-    scenes.StartScene = StartScene;
+    scenes.PlayScene = PlayScene;
 })(scenes || (scenes = {}));
-//# sourceMappingURL=start.js.map
+//# sourceMappingURL=play.js.map

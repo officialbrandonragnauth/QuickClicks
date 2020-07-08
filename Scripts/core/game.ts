@@ -10,8 +10,11 @@
   let currentState:number;
 
   assetManifest = [
+    {id:"background", src:"./Assets/background.png"},
+    {id:"help", src:"./Assets/help.png"},
     {id:"logo", src:"./Assets/logo.png"},
-    {id:"target", src:"./Assets/target.png"}
+    {id:"start", src:"./Assets/start.png"},
+    {id:"target_1", src:"./Assets/target_1.png"}
   ];
 
   function Init() {
@@ -22,6 +25,7 @@
   }
 
   function Start() {
+
     stage = new createjs.Stage(canvas);
     stage.enableMouseOver(20);
 
@@ -46,27 +50,24 @@
   function Main() {
     switch(objects.Game.currentScene)
     {
-      case config.Scene.START:
-        stage.removeAllChildren();
-        currentScene = new scenes.StartScene(assetManager);
-        stage.addChild(currentScene);
-      break;
-
-      case config.Scene.GAME:
-        stage.removeAllChildren();
-        currentScene = new scenes.StartScene(assetManager);
-        stage.addChild(currentScene);
-      break;
-
-      case config.Scene.OVER:
-        stage.removeAllChildren();
-        currentScene = new scenes.StartScene(assetManager);
-        stage.addChild(currentScene);
-      break;
+        case config.Scene.START:
+            stage.removeAllChildren();
+            currentScene = new scenes.StartScene(assetManager);
+            stage.addChild(currentScene);
+        break;
+        case config.Scene.GAME:
+            stage.removeAllChildren();
+            currentScene = new scenes.PlayScene(assetManager);
+            stage.addChild(currentScene);
+        break;
+        case config.Scene.OVER:
+            stage.removeAllChildren();
+            currentScene = new scenes.GameOverScene(assetManager);
+            stage.addChild(currentScene);
+        break;
     }
-
     currentState = objects.Game.currentScene;
   }
 
   window.onload = Init;
-})
+})();
