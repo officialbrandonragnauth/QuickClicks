@@ -18,28 +18,32 @@ var scenes;
         // Constructor
         function PlayScene(assetManager) {
             var _this = _super.call(this, assetManager) || this;
+            _this.ms = 0;
+            _this.sec = 0;
+            _this.min = 0;
             _this.Start();
             return _this;
         }
         // Methods
         PlayScene.prototype.Start = function () {
             this.background = new objects.Background(this.assetManager);
+            // Random target location to spawn
             this.targetX = Math.floor(Math.random() * 800);
             this.targetY = Math.floor(Math.random() * 420);
             this.target = new objects.Target(this.assetManager, 1, this.targetX, this.targetY);
-            createjs.Ticker.reset();
-            createjs.Ticker.on("tick", this.Update);
-            this.timerLabel = new objects.Label("", "14px", "Arial", "#000");
-            this.timerLabel.text = "" + createjs.Ticker.getTime(true);
+            this.timerLabel = new objects.Label("", "32px", "Arial", "#FFF", 30, 10);
             this.Main();
+        };
+        PlayScene.prototype.Update = function () {
+            this.ms = createjs.Ticker.getTime(true);
+            this.sec = Math.floor(this.ms / 1000);
+            this.min = Math.floor(this.sec / 60);
+            this.timerLabel.text = this.min + ":" + this.sec + ":" + this.ms;
         };
         PlayScene.prototype.Main = function () {
             this.addChild(this.background);
             this.addChild(this.target);
             this.addChild(this.timerLabel);
-        };
-        PlayScene.prototype.Update = function () {
-            this.num = createjs.Ticker.getTime(true);
         };
         return PlayScene;
     }(objects.Scene));

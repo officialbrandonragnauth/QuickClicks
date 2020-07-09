@@ -45,6 +45,8 @@
                 break;
             case config.Scene.GAME:
                 stage.removeAllChildren();
+                createjs.Ticker.reset();
+                createjs.Ticker.on("tick", Update);
                 currentScene = new scenes.PlayScene(assetManager);
                 stage.addChild(currentScene);
                 break;
