@@ -25,6 +25,7 @@ var objects;
         Scene.prototype.Start = function () { };
         Scene.prototype.Update = function () { };
         Scene.prototype.Main = function () { };
+        Scene.timerLabel = new objects.Label("", "32px", "Arial", "#FFF", 30, 10);
         return Scene;
     }(createjs.Container));
     objects.Scene = Scene;

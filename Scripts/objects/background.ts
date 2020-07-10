@@ -3,10 +3,9 @@ module objects {
     // Variables
 
     // Constructor
-    constructor(assetManager:createjs.LoadQueue)
+    constructor(assetManager:createjs.LoadQueue, num:number = 1)
     {
-      super(assetManager.getResult("background"));
+      super(assetManager.getResult("background_" + num));
     }
-    // Functions
   }
 }

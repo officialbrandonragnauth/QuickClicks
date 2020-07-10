@@ -17,8 +17,9 @@ var objects;
         __extends(Background, _super);
         // Variables
         // Constructor
-        function Background(assetManager) {
-            return _super.call(this, assetManager.getResult("background")) || this;
+        function Background(assetManager, num) {
+            if (num === void 0) { num = 1; }
+            return _super.call(this, assetManager.getResult("background_" + num)) || this;
         }
         return Background;
     }(createjs.Bitmap));

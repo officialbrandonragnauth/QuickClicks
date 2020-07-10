@@ -7,15 +7,6 @@ module objects {
 
       this.x = x;
       this.y = y;
-      this.scaleX = 0.2;
-      this.scaleY = 0.2;
-
-      this.on("click", this.onClick);
-    }
-
-    private onClick():void {
-      console.log("CLICKED");
-      createjs.Ticker.paused = true;
     }
   }
 }

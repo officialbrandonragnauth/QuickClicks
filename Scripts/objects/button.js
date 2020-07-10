@@ -58,7 +58,7 @@ var objects;
         // Draws the box around the label
         Button.prototype.drawBox = function () {
             this.box.graphics.beginFill("#000");
-            this.box.graphics.drawRect(265, 170, 350, 100);
+            this.box.graphics.drawRect(265, 170, 365, 100);
             this.box.alpha = 0.5;
             this.stage.addChild(this.box);
         };

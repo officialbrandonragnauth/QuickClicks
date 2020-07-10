@@ -13,21 +13,34 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var objects;
 (function (objects) {
-    var Target = /** @class */ (function (_super) {
-        __extends(Target, _super);
+    var Arrow = /** @class */ (function (_super) {
+        __extends(Arrow, _super);
         // Variables
         // Constructor
-        function Target(assetManager, num, x, y) {
-            if (num === void 0) { num = 1; }
+        function Arrow(assetManager, orientation, x, y) {
+            if (orientation === void 0) { orientation = 1; }
             if (x === void 0) { x = 0; }
             if (y === void 0) { y = 0; }
-            var _this = _super.call(this, assetManager.getResult("target_" + num)) || this;
+            var _this = _super.call(this, assetManager.getResult("arrow")) || this;
             _this.x = x;
             _this.y = y;
+            _this.scaleX *= orientation * 0.7;
+            _this.scaleY *= 0.7;
+            _this.on("mouseover", _this.mouseOver);
+            _this.on("mouseout", _this.mouseOut);
             return _this;
         }
-        return Target;
+        // Methods
+        // Event Handlers
+        Arrow.prototype.mouseOver = function () {
+            this.cursor = "pointer";
+            this.alpha = 0.7;
+        };
+        Arrow.prototype.mouseOut = function () {
+            this.alpha = 1.0;
+        };
+        return Arrow;
     }(createjs.Bitmap));
-    objects.Target = Target;
+    objects.Arrow = Arrow;
 })(objects || (objects = {}));
-//# sourceMappingURL=target.js.map
+//# sourceMappingURL=arrow.js.map
